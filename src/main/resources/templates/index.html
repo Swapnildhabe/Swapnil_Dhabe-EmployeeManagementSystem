@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org"
+	th:replace="~{base:: layout(~{::title}, ~{::section})}">
+<head>
+<meta charset="ISO-8859-1">
+<title>Index Page</title>
+
+	    <!-- Optionally include any necessary CSS here -->
+	
+</head>
+<body>
+	<section>
+		<div class="container p-4">
+			<div class="row">
+				<div class="col-md-12 offset-m d-2">
+					<div class="card">
+						<div class="card-header text-center fs-4">Employee Details</div>
+						
+                     <!-- Display session message if available -->
+						<th:block th:if="${session.msg}">
+							<p class="text-center text-success fs-4">[[${session.msg}]]</p>
+							<th:block
+								th:text="${@employeeServiceIpliment.removeSessoinMessage()}">
+							</th:block>
+						</th:block>
+
+						<div class="card-body">
+						
+						 <!-- Table to display employee details -->
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">Id</th>
+										<th scope="col">Name</th>
+										<th scope="col">Email</th>
+										<th scope="col">Address</th>
+										<th scope="col">Date of Birth</th>
+										<th scope="col">Department</th>
+										<th scope="col">Gender</th>
+										
+									</tr>
+								</thead>
+								<tbody>
+								
+								<!-- Loop through employee list and display each employee's details -->
+									<tr th:each="e,c:${empList}">
+										<th scope="row">[[${c.count}]]</th>
+										<td>[[${e.name}]]</td>
+										<td>[[${e.email}]]</td>
+										<td>[[${e.address}]]</td>
+										<td>[[${e.dateOfBirth}]]</td>
+										<td>[[${e.department}]]</td>
+										
+										<td>[[${e.gender}]]</td>
+										
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+	</section>
+</body>
+</html>
